@@ -1,4 +1,5 @@
 package tn.fst.spring.skistation;
 
-public class Support {
+enum Support {
+    SKI, SNOWBOARD
 }
