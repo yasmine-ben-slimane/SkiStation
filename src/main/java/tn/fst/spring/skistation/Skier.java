@@ -1,7 +1,7 @@
 package tn.fst.spring.skistation;
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -17,5 +17,8 @@ public class Skier {
     @OneToOne
     private Subscription subscription;
     @ManyToMany
-    private List<Piste> pistes;
+    private Set<Piste> pistes;
+
+    @OneToMany (mappedBy = "skier")
+    private Set<Registration> registrations;
 }

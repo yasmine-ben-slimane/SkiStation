@@ -3,6 +3,7 @@ package tn.fst.spring.skistation;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -15,4 +16,6 @@ public class Piste {
     private Color color;
     private int length;
     private int slope;
+    @ManyToMany(mappedBy = "pistes")
+    private Set<Skier> skier;
 }

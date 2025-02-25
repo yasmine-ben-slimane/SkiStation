@@ -2,7 +2,7 @@ package tn.fst.spring.skistation;
 
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -14,8 +14,8 @@ public class Instructor {
     private String lastName;
     @Temporal(TemporalType.DATE)
     private Date dateOfHire;
-    //@OneToMany
-    //private List<Course> courses;
+    @OneToMany
+    private Set<Course> courses;
 
 }
 

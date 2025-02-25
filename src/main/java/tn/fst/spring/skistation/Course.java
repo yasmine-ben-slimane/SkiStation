@@ -1,7 +1,7 @@
 package tn.fst.spring.skistation;
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -16,7 +16,7 @@ public class Course {
     private float price;
     private int timeSlot;
 
-    @ManyToOne
-    private Instructor instructor;
+    @OneToMany(mappedBy = "course")
+    private Set<Registration> registrations;
 }
 
