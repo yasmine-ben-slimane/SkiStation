@@ -1,0 +1,100 @@
+package tn.fst.spring.skistation.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tn.fst.spring.skistation.entities.Course;
+import tn.fst.spring.skistation.entities.Support;
+import tn.fst.spring.skistation.entities.TypeCourse;
+import tn.fst.spring.skistation.repositories.CourseRepository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+public class CourseServiceImpl implements ICourseService {
+    
+    @Autowired
+    private CourseRepository courseRepository;
+    
+    @Override
+    public Course addCourse(Course course) {
+        return courseRepository.save(course);
+    }
+    
+    @Override
+    public List<Course> getAllCourses() {
+        return courseRepository.findAll();
+    }
+    
+    @Override
+    public Optional<Course> getCourseById(Long id) {
+        return courseRepository.findById(id);
+    }
+    
+    @Override
+    public Course updateCourse(Course course) {
+        return courseRepository.save(course);
+    }
+    
+    @Override
+    public void deleteCourse(Long id) {
+        courseRepository.deleteById(id);
+    }
+    
+    @Override
+    public List<Course> findByLevel(int level) {
+        return courseRepository.findByLevel(level);
+    }
+    
+    @Override
+    public List<Course> findByTypeCourse(TypeCourse typeCourse) {
+        return courseRepository.findByTypeCourse(typeCourse);
+    }
+    
+    @Override
+    public List<Course> findBySupport(Support support) {
+        return courseRepository.findBySupport(support);
+    }
+    
+    @Override
+    public List<Course> findByPriceLessThan(float maxPrice) {
+        return courseRepository.findByPriceLessThan(maxPrice);
+    }
+    
+    @Override
+    public List<Course> findByTimeSlot(int timeSlot) {
+        return courseRepository.findByTimeSlot(timeSlot);
+    }
+    
+    @Override
+    public List<Course> findCoursesByTypeAndSupport(TypeCourse typeCourse, Support support) {
+        return courseRepository.findCoursesByTypeAndSupport(typeCourse, support);
+    }
+    
+    @Override
+    public Map<Course, Long> getCoursesWithRegistrationCount() {
+        List<Object[]> results = courseRepository.findCoursesWithRegistrationCount();
+        Map<Course, Long> coursesWithCount = new HashMap<>();
+        
+        for (Object[] result : results) {
+            Course course = (Course) result[0];
+            Long count = (Long) result[1];
+            coursesWithCount.put(course, count);
+        }
+        
+        return coursesWithCount;
+    }
+    
+    @Override
+    public List<Course> findCoursesByPriceRange(float minPrice, float maxPrice) {
+        return courseRepository.findCoursesByPriceRange(minPrice, maxPrice);
+    }
+    
+    @Override
+    public List<Course> findCoursesWithMinRegistrations(int minRegistrations) {
+        return courseRepository.findCoursesWithMinRegistrations(minRegistrations);
+    }
+}

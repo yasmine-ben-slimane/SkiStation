@@ -1,7 +1,5 @@
-package tn.fst.spring.skistation;
+package tn.fst.spring.skistation.entities;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 public class Registration {
